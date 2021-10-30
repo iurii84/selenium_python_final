@@ -18,7 +18,9 @@ class ProductPage(BasePage):
 
         added_item_el = self.wait_for_item_and_get_it(*ProductPageLocators.ADDED_ITEM, 5)
         added_item_text = added_item_el.text
-        expected_item_text = "The shellcoder's handbook"
+
+        expected_text_el = self.find_element(*ProductPageLocators.EXPECTED_ITEM_NAME)
+        expected_item_text = expected_text_el.text
         assert added_item_text == expected_item_text, f"wrong item's text added! " \
                                                       f"Expected '{expected_item_text}'," \
                                                       f" but got '{added_item_text}'"
@@ -27,7 +29,11 @@ class ProductPage(BasePage):
         cart_total_price_el = self.find_element(*ProductPageLocators.CART_TOTAL_PRICE)
         total_price_no_format_txt = cart_total_price_el.text
         total_price = find_float_in_str(total_price_no_format_txt)
-        expected_price = 9.99
+
+        expected_price_el = self.find_element(*ProductPageLocators.CART_TOTAL_PRICE)
+        expected_price_txt = expected_price_el.text
+        expected_price = find_float_in_str(expected_price_txt)
+
         assert total_price == expected_price, f"wrong price! " \
                                               f"Expected '{expected_price}'," \
                                               f" but got '{total_price}'"

@@ -15,3 +15,6 @@ class ProductPageLocators:
     ADD_ITEM_TO_CART_BTN = (By.CSS_SELECTOR, ".btn-add-to-basket")
     ADDED_ITEM = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
     CART_TOTAL_PRICE = (By.CSS_SELECTOR, ".alertinner :nth-child(1) > strong")
+
+    EXPECTED_ITEM_NAME = (By.CSS_SELECTOR, ".product_main > h1")
+    EXPECTED_ITEM_PRICE = (By.CSS_SELECTOR, ".product_main .price_color")
