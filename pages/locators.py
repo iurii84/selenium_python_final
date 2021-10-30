@@ -11,3 +11,7 @@ class LoginPageLocators:
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
 
 
+class ProductPageLocators:
+    ADD_ITEM_TO_CART_BTN = (By.CSS_SELECTOR, ".btn-add-to-basket")
+    ADDED_ITEM = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
+    CART_TOTAL_PRICE = (By.CSS_SELECTOR, ".alertinner :nth-child(1) > strong")
