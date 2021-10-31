@@ -38,6 +38,14 @@ class ProductPage(BasePage):
                                               f"Expected '{expected_price}'," \
                                               f" but got '{total_price}'"
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.ADDED_ITEM), \
+            "Success message is presented, but should not be"
+
+    def is_disappeared_from_page(self):
+        assert self.is_disappeared(*ProductPageLocators.ADDED_ITEM), \
+            "Item is not disappeared, but should be"
+
 
 def find_float_in_str(string):
     str_res = ''
