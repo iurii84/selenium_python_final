@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait
-from .locators import MainPageLocators
+from .locators import MainPageLocators, BasePageLocators
 from selenium.webdriver.common.by import By
 
 
@@ -16,6 +16,10 @@ class BasePage:
     def go_to_login_page(self):
         login_link = self.browser.find_element(By.CSS_SELECTOR, "#login_link")
         login_link.click()
+
+    def go_to_cart_page(self):
+        cart_link = self.browser.find_element(*BasePageLocators.CART_URL)
+        cart_link.click()
 
     def should_be_login_link(self):
         assert self.is_element_present(*MainPageLocators.LOGIN_LINK), "Login link is not presented"
@@ -37,7 +41,7 @@ class BasePage:
             return False
         return self.browser.find_element(how, what)
 
-    def wait_for_item_and_get_it(self, how, what, time):
+    def wait_for_item_and_get_it(self, how, what, time=5):
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:
@@ -58,6 +62,10 @@ class BasePage:
         except TimeoutException:
             return False
         return True
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                 " probably unauthorised user"
 
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
