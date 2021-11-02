@@ -31,5 +31,5 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page.wait_for_not_have_items_in_cart()
     page.wait_for_text_that_cart_is_empty()
 
-#   pytest -m login_quest test_main_page.py
+#   pytest -v test_main_page.py
 #   pytest -v -m login_guest
